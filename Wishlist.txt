@@ -1,6 +1,7 @@
 - Example of a cool feature!          [CHECK] <- check if it's done =D
 
 - Movable and directionable cannon    [     ]
+- Projectiles			      [     ]
 - Simple enemy                        [     ]
 - Enemy health bar                    [     ]
 - Inpendent ship deployment           [     ]
