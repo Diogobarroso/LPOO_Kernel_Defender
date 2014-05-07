@@ -7,6 +7,9 @@ import com.mygdx.game.KernelDefender;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+        config.title = "Kernel Defender";
+        config.width = 1280;
+        config.height = 720;
 		new LwjglApplication(new KernelDefender(), config);
 	}
 }
