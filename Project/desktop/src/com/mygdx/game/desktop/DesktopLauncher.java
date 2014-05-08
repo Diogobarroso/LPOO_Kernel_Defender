@@ -1,5 +1,6 @@
 package com.mygdx.game.desktop;
 
+import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.mygdx.game.KernelDefender;
@@ -10,6 +11,7 @@ public class DesktopLauncher {
         config.title = "Kernel Defender";
         config.width = 1280;
         config.height = 720;
+        config.addIcon("windowicon.png", Files.FileType.Internal);
 		new LwjglApplication(new KernelDefender(), config);
 	}
 }
