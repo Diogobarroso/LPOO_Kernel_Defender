@@ -4,4 +4,8 @@
 - Projectiles			      [     ]
 - Simple enemy                        [     ]
 - Enemy health bar                    [     ]
+- Imprecise firing                    [     ]
+- Camera shake on:
+    - Kernel hit                      [     ]
+    - Player hit                      [     ]
 - Inpendent ship deployment           [     ]

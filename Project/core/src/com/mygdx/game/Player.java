@@ -1,13 +1,14 @@
 package com.mygdx.game;
 
 import java.lang.Math;
+import java.util.Vector;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class Player {
     public Sprite sprite;
+    public Vector<Projectile> projectiles;
     private Texture texture;
     //position data
     private float posx;
@@ -26,12 +27,15 @@ public class Player {
 
         //set initial position
         kernelAngle = -45.0f;
-        kernelDistance = (float) Math.sqrt(150.0f * 150.0f);
+        kernelDistance = 150.0f;
         //we subtract half the original sprite's dimensions to place its center in the correct position
-        posx = 150 * (float) Math.cos(Math.toRadians(kernelAngle)) - sprite.getWidth() / 2;
+        posx = kernelDistance * (float) Math.cos(Math.toRadians(kernelAngle)) - sprite.getWidth() / 2;
         //TODO: set this position relative to window vertical size
-        posy = 720 - 150 * -1 * (float) Math.sin(Math.toRadians(kernelAngle)) - sprite.getHeight() / 2;
+        posy = 720 - kernelDistance * -1 * (float) Math.sin(Math.toRadians(kernelAngle)) - sprite.getHeight() / 2;
         sprite.setPosition(posx, posy) ;
+
+        //prepare projectile container
+        projectiles = new Vector<Projectile>();
     }
 
     public void UpdateOrientation() {
@@ -57,8 +61,8 @@ public class Player {
                 kernelAngle = -90.0f;
         }
 
-        posx = 150 * (float) Math.cos(Math.toRadians(kernelAngle)) - sprite.getWidth() / 2;
-        posy = 720 - 150 * -1 * (float) Math.sin(Math.toRadians(kernelAngle)) - sprite.getHeight() / 2;
+        posx = kernelDistance * (float) Math.cos(Math.toRadians(kernelAngle)) - sprite.getWidth() / 2;
+        posy = 720 - kernelDistance * -1 * (float) Math.sin(Math.toRadians(kernelAngle)) - sprite.getHeight() / 2;
         sprite.setPosition(posx, posy);
     }
 }
