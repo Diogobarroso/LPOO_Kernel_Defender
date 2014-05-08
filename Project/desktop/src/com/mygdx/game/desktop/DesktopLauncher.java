@@ -11,7 +11,7 @@ public class DesktopLauncher {
         config.title = "Kernel Defender";
         config.width = 1280;
         config.height = 720;
-        config.addIcon("windowicon.png", Files.FileType.Internal);
+        config.addIcon("icons/windowicon.png", Files.FileType.Internal);
 		new LwjglApplication(new KernelDefender(), config);
 	}
 }

@@ -17,6 +17,8 @@ public class KernelDefender extends ApplicationAdapter {
 	@Override
 	public void render () {
         //main game loop
+        //handle input
+        worldController.HandleInput();
         //general updates
         worldController.Update();
         //drawing
