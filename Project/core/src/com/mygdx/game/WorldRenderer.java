@@ -18,6 +18,8 @@ public class WorldRenderer {
     public void render() {
         batch.begin();
             worldController.player.sprite.draw(batch);
+            for(int i = 0; i < worldController.player.projectiles.size(); i++)
+                worldController.player.projectiles.elementAt(i).sprite.draw(batch);
         batch.end();
     }
 }

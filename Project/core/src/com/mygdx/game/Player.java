@@ -5,6 +5,7 @@ import java.util.Vector;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.utils.Timer;
 
 public class Player {
     public Sprite sprite;
@@ -16,6 +17,9 @@ public class Player {
     //angle from kernel
     private float kernelAngle;
     private float kernelDistance;
+    //shooting frequency
+    private float shootingFreq; //times per sec
+    private float shootingTimer;
 
     public Player() {
         //sprite loading
@@ -36,9 +40,18 @@ public class Player {
 
         //prepare projectile container
         projectiles = new Vector<Projectile>();
+
+        //set shooting Freq
+        shootingFreq = 5.0f;
+        shootingTimer = 0.0f;
     }
 
-    public void UpdateOrientation() {
+    public void Update() {
+        UpdateOrientation();
+        UpdateProjectiles();
+    }
+
+    private void UpdateOrientation() {
         //remember that mouse input has an inverted y axis (I KNOW, ITS MORONIC)
         double xdelta = Gdx.input.getX() - (posx + sprite.getWidth() / 2);
         double ydelta = 720 - Gdx.input.getY() - (posy + sprite.getHeight() / 2); //TODO: set this relative to screen vertical size
@@ -64,5 +77,18 @@ public class Player {
         posx = kernelDistance * (float) Math.cos(Math.toRadians(kernelAngle)) - sprite.getWidth() / 2;
         posy = 720 - kernelDistance * -1 * (float) Math.sin(Math.toRadians(kernelAngle)) - sprite.getHeight() / 2;
         sprite.setPosition(posx, posy);
+    }
+
+    public void Shoot() {
+        shootingTimer += Gdx.graphics.getDeltaTime();
+        if(shootingTimer >= 1 / shootingFreq) {
+            projectiles.add(new Projectile(posx + sprite.getWidth() / 2, posy + sprite.getHeight() / 2, sprite.getRotation() + 90.0f));
+            shootingTimer -= 1 / shootingFreq;
+        }
+    }
+
+    private void UpdateProjectiles() {
+        for(Projectile p : projectiles)
+            p.Move();
     }
 }
