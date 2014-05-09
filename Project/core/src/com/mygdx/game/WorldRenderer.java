@@ -16,6 +16,7 @@ public class WorldRenderer {
     }
 
     public void render() {
+        batch.enableBlending(); //for transparent png's
         batch.begin();
             worldController.player.sprite.draw(batch); //draw player
             for(Projectile projectile : worldController.player.projectiles) //draw projectiles
