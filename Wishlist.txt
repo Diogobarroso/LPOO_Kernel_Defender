@@ -4,6 +4,7 @@
 - Projectiles			      [CHECK]
 - Simple enemy                        [CHECK]
 - Enemy health bar                    [CHECK]
+- Temporary Kernel                    [     ]
 - Money (memory)                      [     ]
 - Component-based enemy               [     ]
 - Imprecise firing                    [     ]
