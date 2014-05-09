@@ -98,8 +98,10 @@ public class WorldController extends InputAdapter{
             while(enemyIter.hasNext()) {
                 Enemy enemy = enemyIter.next();
                 //deal damage
-                if(CheckCollision(projectile.sprite, enemy.sprite))
+                if(CheckCollision(projectile.sprite, enemy.sprite)) {
                     enemy.TakeDamage(projectile.damage);
+                    projIter.remove();
+                }
                 //destroy if out of health
                 if(enemy.health < 0.0f)
                     enemyIter.remove();

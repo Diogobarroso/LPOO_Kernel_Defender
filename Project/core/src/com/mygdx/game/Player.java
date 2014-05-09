@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import java.lang.Math;
+import java.util.Iterator;
 import java.util.Vector;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -87,8 +88,17 @@ public class Player {
         }
     }
 
-    private void UpdateProjectiles() {
+    private void UpdateProjectiles() {/*
         for(Projectile p : projectiles)
             p.Move();
+            */
+        Iterator<Projectile> iter = projectiles.iterator();
+
+        while(iter.hasNext()) {
+            Projectile projectile = iter.next();
+            projectile.Move();
+            if(projectile.posx > 1280.0f || projectile.posx < 0.0f || projectile.posy > 720.0f || projectile.posy < 0.0f)
+                iter.remove();
+        }
     }
 }

@@ -13,6 +13,7 @@ public class Enemy {
     private float angle;
 
     public float health;
+    public HealthBar healthBar;
 
     public Enemy() {
         texture = new Texture("sprites/virus.png");
@@ -43,12 +44,15 @@ public class Enemy {
 
         //set health
         health = 5.0f;
+        healthBar = new HealthBar(posx, posy, sprite.getWidth(), sprite.getHeight());
     }
 
     public void Move() {
         posx += Math.cos(Math.toRadians(angle)) * speed * Gdx.graphics.getDeltaTime();
         posy += Math.sin(Math.toRadians(angle)) * speed * Gdx.graphics.getDeltaTime();
         sprite.setPosition(posx, posy);
+        //move health bar along
+        healthBar.Move(posx, posy);
     }
 
     public boolean CheckDestiny() {

@@ -21,8 +21,10 @@ public class WorldRenderer {
             worldController.player.sprite.draw(batch); //draw player
             for(Projectile projectile : worldController.player.projectiles) //draw projectiles
                 projectile.sprite.draw(batch);
-            for(Enemy enemy : worldController.enemies) //draw enemies
+            for(Enemy enemy : worldController.enemies) { //draw enemies
                 enemy.sprite.draw(batch);
+                enemy.healthBar.Draw(5.0f, enemy.health);
+            }
         batch.end();
     }
 }

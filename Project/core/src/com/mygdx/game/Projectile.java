@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public class Projectile {
     public Sprite sprite;
     private Texture texture;
-    private float posx;
-    private float posy;
+    public float posx;
+    public float posy;
     private float speed;
     private float angle;
 
