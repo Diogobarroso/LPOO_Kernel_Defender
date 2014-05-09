@@ -46,4 +46,10 @@ public class Enemy {
         posy += Math.sin(Math.toRadians(angle)) * speed * Gdx.graphics.getDeltaTime();
         sprite.setPosition(posx, posy);
     }
+
+    public boolean CheckDestiny() {
+        float deltax = posx;
+        float deltay = posy - 720;
+        return ((float)Math.sqrt(deltax * deltax + deltay * deltay) < 100.0f);
+    }
 }

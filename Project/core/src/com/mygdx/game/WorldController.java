@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import java.util.Iterator;
 import java.util.Vector;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -38,6 +39,7 @@ public class WorldController extends InputAdapter{
         player.Update();
         EnemyUpdate();
         EnemySpawning();
+        EnemySuccess();
     }
 
     public void HandleInput() {
@@ -66,6 +68,23 @@ public class WorldController extends InputAdapter{
         if(enemySpawnTimer >= 1 / enemySpawnFreq) {
             enemies.add(new Enemy());
             enemySpawnTimer -= 1 / enemySpawnFreq;
+        }
+    }
+
+    public void EnemySuccess() {
+        /*
+        for(Enemy enemy : enemies) {
+            if(enemy.CheckDestiny())
+                enemies.remove(enemy);
+        }
+        */
+        Iterator<Enemy> iter = enemies.iterator();
+
+        while(iter.hasNext()) {
+            Enemy enemy = iter.next();
+
+            if(enemy.CheckDestiny())
+                iter.remove();
         }
     }
 }
