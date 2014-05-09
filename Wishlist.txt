@@ -4,6 +4,8 @@
 - Projectiles			      [CHECK]
 - Simple enemy                        [CHECK]
 - Enemy health bar                    [CHECK]
+- Money (memory)                      [     ]
+- Component-based enemy               [     ]
 - Imprecise firing                    [     ]
 - Camera shake on:
     - Kernel hit                      [     ]
