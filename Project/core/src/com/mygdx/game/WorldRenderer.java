@@ -26,7 +26,10 @@ public class WorldRenderer {
             }
         batch.end();
 
+        //need separate drawing method for health bars, since they're basic shapes
         for(Enemy enemy : worldController.enemies)
             enemy.healthBar.Draw(5.0f, enemy.health, batch);
+
+        worldController.kernel.Draw();
     }
 }

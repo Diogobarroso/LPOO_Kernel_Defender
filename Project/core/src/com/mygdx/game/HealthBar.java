@@ -25,7 +25,6 @@ public class HealthBar {
     }
 
     public void Draw(float total, float current, SpriteBatch batch) {
-        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(1.0f - current / total, current / total, 0, 1);
         shapeRenderer.rect(posx, posy, width * (current / total), height);

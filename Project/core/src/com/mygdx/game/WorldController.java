@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 
 public class WorldController extends InputAdapter{
+    public Kernel kernel;
     public Player player;
     public Vector<Enemy> enemies;
     private float enemySpawnFreq;
@@ -27,6 +28,7 @@ public class WorldController extends InputAdapter{
     public void Init() {
         Gdx.input.setInputProcessor(this);
         player = new Player();
+        kernel = new Kernel();
         enemySpawnFreq = 1.0f;
         enemySpawnTimer = 0.0f;
         enemies = new Vector<Enemy>();
@@ -82,8 +84,10 @@ public class WorldController extends InputAdapter{
         while(iter.hasNext()) {
             Enemy enemy = iter.next();
 
-            if(enemy.CheckDestiny())
+            if(enemy.CheckDestiny()){
+                kernel.TakeDamage(enemy.damage);
                 iter.remove();
+            }
         }
     }
 

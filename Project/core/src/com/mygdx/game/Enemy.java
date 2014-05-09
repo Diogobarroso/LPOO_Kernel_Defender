@@ -14,6 +14,7 @@ public class Enemy {
 
     public float health;
     public HealthBar healthBar;
+    public float damage;
 
     public Enemy() {
         texture = new Texture("sprites/virus.png");
@@ -45,6 +46,9 @@ public class Enemy {
         //set health
         health = 5.0f;
         healthBar = new HealthBar(posx - sprite.getWidth() / 2, posy + sprite.getHeight() * sprite.getScaleY(), sprite.getWidth() * sprite.getScaleX(), 5.0f);
+
+        //set damage
+        damage = 1.0f;
     }
 
     public void Move() {
