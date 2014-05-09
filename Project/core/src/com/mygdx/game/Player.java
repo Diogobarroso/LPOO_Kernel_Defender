@@ -4,9 +4,9 @@ import java.lang.Math;
 import java.util.Iterator;
 import java.util.Vector;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.utils.Timer;
 
 public class Player {
     public Sprite sprite;
@@ -21,6 +21,7 @@ public class Player {
     //shooting frequency
     private float shootingFreq; //times per sec
     private float shootingTimer;
+    private Sound shootingSound;
 
     public Player() {
         //sprite loading
@@ -45,6 +46,9 @@ public class Player {
         //set shooting Freq
         shootingFreq = 5.0f;
         shootingTimer = 0.0f;
+
+        //set SFX
+        shootingSound = Gdx.audio.newSound(Gdx.files.internal("sfx/Laser_Shoot2.wav"));
     }
 
     public void Update() {
@@ -84,6 +88,7 @@ public class Player {
         shootingTimer += Gdx.graphics.getDeltaTime();
         if(shootingTimer >= 1 / shootingFreq) {
             projectiles.add(new Projectile(posx + sprite.getWidth() / 2, posy + sprite.getHeight() / 2, sprite.getRotation() + 90.0f));
+            shootingSound.play();
             shootingTimer -= 1 / shootingFreq;
         }
     }

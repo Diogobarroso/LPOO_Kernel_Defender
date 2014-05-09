@@ -7,6 +7,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Application.ApplicationType;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
@@ -17,6 +18,7 @@ public class WorldController extends InputAdapter{
     private float enemySpawnFreq;
     private float enemySpawnTimer;
     private Music music;
+    private Sound enemyExplosion;
 
     public WorldController() {
         Init();
@@ -32,6 +34,8 @@ public class WorldController extends InputAdapter{
         music = Gdx.audio.newMusic(Gdx.files.internal("music/testmusic.ogg"));
         music.setLooping(true);
         music.play();
+
+        enemyExplosion = Gdx.audio.newSound(Gdx.files.internal("sfx/Explosion4.wav"));
     }
 
     public void Update() {
@@ -102,8 +106,10 @@ public class WorldController extends InputAdapter{
                     projIter.remove();
                 }
                 //destroy if out of health
-                if(enemy.health <= 0.0f)
+                if(enemy.health <= 0.0f) {
                     enemyIter.remove();
+                    enemyExplosion.play();
+                }
             }
         }
     }
