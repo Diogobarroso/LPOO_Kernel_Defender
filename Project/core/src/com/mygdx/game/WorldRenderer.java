@@ -23,8 +23,10 @@ public class WorldRenderer {
                 projectile.sprite.draw(batch);
             for(Enemy enemy : worldController.enemies) { //draw enemies
                 enemy.sprite.draw(batch);
-                enemy.healthBar.Draw(5.0f, enemy.health);
             }
         batch.end();
+
+        for(Enemy enemy : worldController.enemies)
+            enemy.healthBar.Draw(5.0f, enemy.health, batch);
     }
 }

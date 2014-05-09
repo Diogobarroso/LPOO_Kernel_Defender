@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class HealthBar {
@@ -23,7 +24,8 @@ public class HealthBar {
         posy = y;
     }
 
-    public void Draw(float total, float current) {
+    public void Draw(float total, float current, SpriteBatch batch) {
+        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(1.0f - current / total, current / total, 0, 1);
         shapeRenderer.rect(posx, posy, width, height);
