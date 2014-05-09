@@ -1,11 +1,11 @@
 - Example of a cool feature!          [CHECK] <- check if it's done =D
 
 - Movable and directionable cannon    [CHECK]
-- Projectiles			      [     ]
-- Simple enemy                        [     ]
-- Enemy health bar                    [     ]
+- Projectiles			      [CHECK]
+- Simple enemy                        [CHECK]
+- Enemy health bar                    [CHECK]
 - Imprecise firing                    [     ]
 - Camera shake on:
     - Kernel hit                      [     ]
     - Player hit                      [     ]
-- Inpendent ship deployment           [     ]
+- Independent ship deployment         [     ]

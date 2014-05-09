@@ -44,7 +44,7 @@ public class Enemy {
 
         //set health
         health = 5.0f;
-        healthBar = new HealthBar(posx, posy, sprite.getWidth(), sprite.getHeight());
+        healthBar = new HealthBar(posx - sprite.getWidth() / 2, posy + sprite.getHeight() * sprite.getScaleY(), sprite.getWidth() * sprite.getScaleX(), 5.0f);
     }
 
     public void Move() {
@@ -52,7 +52,7 @@ public class Enemy {
         posy += Math.sin(Math.toRadians(angle)) * speed * Gdx.graphics.getDeltaTime();
         sprite.setPosition(posx, posy);
         //move health bar along
-        healthBar.Move(posx, posy);
+        healthBar.Move(posx - sprite.getWidth() / 2, posy + sprite.getHeight() * sprite.getScaleY());
     }
 
     public boolean CheckDestiny() {

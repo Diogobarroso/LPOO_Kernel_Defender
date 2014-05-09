@@ -103,7 +103,7 @@ public class WorldController extends InputAdapter{
                     projIter.remove();
                 }
                 //destroy if out of health
-                if(enemy.health < 0.0f)
+                if(enemy.health <= 0.0f)
                     enemyIter.remove();
             }
         }

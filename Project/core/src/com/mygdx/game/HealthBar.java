@@ -28,7 +28,7 @@ public class HealthBar {
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(1.0f - current / total, current / total, 0, 1);
-        shapeRenderer.rect(posx, posy, width, height);
+        shapeRenderer.rect(posx, posy, width * (current / total), height);
         shapeRenderer.end();
     }
 }
