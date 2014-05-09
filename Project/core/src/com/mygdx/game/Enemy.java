@@ -12,6 +12,8 @@ public class Enemy {
     private float speed;
     private float angle;
 
+    public float health;
+
     public Enemy() {
         texture = new Texture("sprites/virus.png");
         sprite = new Sprite(texture);
@@ -38,7 +40,9 @@ public class Enemy {
         angle = 180.0f - (float)Math.toDegrees(Math.asin(deltay / distance));
         if(deltay < 0)
             angle = -angle;
-        System.out.println(angle);
+
+        //set health
+        health = 5.0f;
     }
 
     public void Move() {
@@ -51,5 +55,9 @@ public class Enemy {
         float deltax = posx;
         float deltay = posy - 720;
         return ((float)Math.sqrt(deltax * deltax + deltay * deltay) < 100.0f);
+    }
+
+    public void TakeDamage(float dmg) {
+        health -= dmg;
     }
 }

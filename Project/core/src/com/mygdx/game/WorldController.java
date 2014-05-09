@@ -9,6 +9,7 @@ import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 
 public class WorldController extends InputAdapter{
@@ -39,6 +40,7 @@ public class WorldController extends InputAdapter{
         player.Update();
         EnemyUpdate();
         EnemySpawning();
+        EnemyDamage(); //deal damage before enemy success for a chance at denial
         EnemySuccess();
     }
 
@@ -72,12 +74,6 @@ public class WorldController extends InputAdapter{
     }
 
     public void EnemySuccess() {
-        /*
-        for(Enemy enemy : enemies) {
-            if(enemy.CheckDestiny())
-                enemies.remove(enemy);
-        }
-        */
         Iterator<Enemy> iter = enemies.iterator();
 
         while(iter.hasNext()) {
@@ -85,6 +81,29 @@ public class WorldController extends InputAdapter{
 
             if(enemy.CheckDestiny())
                 iter.remove();
+        }
+    }
+
+    public boolean CheckCollision(Sprite sprt1, Sprite sprt2) {
+        return sprt1.getBoundingRectangle().overlaps(sprt2.getBoundingRectangle());
+    }
+
+    public void EnemyDamage() {
+        Iterator<Projectile> projIter = player.projectiles.iterator();
+
+        while(projIter.hasNext()) {
+            Projectile projectile = projIter.next();
+            Iterator<Enemy> enemyIter = enemies.iterator();
+
+            while(enemyIter.hasNext()) {
+                Enemy enemy = enemyIter.next();
+                //deal damage
+                if(CheckCollision(projectile.sprite, enemy.sprite))
+                    enemy.TakeDamage(projectile.damage);
+                //destroy if out of health
+                if(enemy.health < 0.0f)
+                    enemyIter.remove();
+            }
         }
     }
 }

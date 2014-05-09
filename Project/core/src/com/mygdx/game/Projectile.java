@@ -12,6 +12,8 @@ public class Projectile {
     private float speed;
     private float angle;
 
+    public float damage;
+
     public Projectile(float x, float y, float alpha) {
         //sprite loading
         texture = new Texture("sprites/projectile.png");
@@ -31,6 +33,9 @@ public class Projectile {
         //set projectile angle
         angle = alpha;
         sprite.setRotation(angle);
+
+        //set damage
+        damage = 1.0f;
     }
 
     public void Move() {
