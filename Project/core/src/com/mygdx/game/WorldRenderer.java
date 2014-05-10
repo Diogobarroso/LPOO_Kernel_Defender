@@ -21,9 +21,10 @@ public class WorldRenderer {
             worldController.player.sprite.draw(batch); //draw player
             for(Projectile projectile : worldController.player.projectiles) //draw projectiles
                 projectile.sprite.draw(batch);
-            for(Enemy enemy : worldController.enemies) { //draw enemies
+            for(Enemy enemy : worldController.enemies) //draw enemies
                 enemy.sprite.draw(batch);
-            }
+            for(FreeFallObject banana : worldController.bananas)
+                banana.sprite.draw(batch);
         batch.end();
 
         //need separate drawing method for health bars, since they're basic shapes

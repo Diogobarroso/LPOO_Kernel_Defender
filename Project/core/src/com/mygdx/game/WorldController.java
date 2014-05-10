@@ -16,6 +16,7 @@ public class WorldController extends InputAdapter{
     public Kernel kernel;
     public Player player;
     public Vector<Enemy> enemies;
+    public Vector<FreeFallObject> bananas;
     private float enemySpawnFreq;
     private float enemySpawnTimer;
     private Music music;
@@ -32,6 +33,7 @@ public class WorldController extends InputAdapter{
         enemySpawnFreq = 1.0f;
         enemySpawnTimer = 0.0f;
         enemies = new Vector<Enemy>();
+        bananas = new Vector<FreeFallObject>();
 
         music = Gdx.audio.newMusic(Gdx.files.internal("music/testmusic.ogg"));
         music.setLooping(true);
@@ -43,10 +45,16 @@ public class WorldController extends InputAdapter{
     public void Update() {
         //player updates
         player.Update();
+
+        //enemy updates
         EnemyUpdate();
         EnemySpawning();
         EnemyDamage(); //deal damage before enemy success for a chance at denial
         EnemySuccess();
+
+        //fruity updates
+        BananaUpdate();
+        BananaCheckBounds();
     }
 
     public void HandleInput() {
@@ -62,6 +70,10 @@ public class WorldController extends InputAdapter{
         //Mouse input
         if(Gdx.input.isButtonPressed(Buttons.LEFT))
             player.Shoot();
+
+        //BANANAS
+        if(Gdx.input.isKeyPressed(Keys.B))
+            bananas.add(new FreeFallObject());
     }
 
     public void EnemyUpdate() {
@@ -115,6 +127,24 @@ public class WorldController extends InputAdapter{
                     enemyExplosion.play();
                 }
             }
+        }
+    }
+
+    public void BananaUpdate() {
+        for(FreeFallObject banana : bananas) {
+            banana.Move();
+            banana.Rotate();
+        }
+    }
+
+    public void BananaCheckBounds() {
+        Iterator<FreeFallObject> iter = bananas.iterator();
+
+        while(iter.hasNext()) {
+            FreeFallObject banana = iter.next();
+
+            if(banana.posx < 0 || banana.posx > 1280 || banana.posy < -50 || banana.posy > 720)
+                iter.remove();
         }
     }
 }

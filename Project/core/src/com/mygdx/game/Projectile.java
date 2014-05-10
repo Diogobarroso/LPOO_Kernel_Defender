@@ -23,8 +23,8 @@ public class Projectile {
         sprite.setScale(2.0f);
 
         //set initial position
-        posx = x;
-        posy = y;
+        posx = x - sprite.getWidth() / 2;
+        posy = y - sprite.getHeight() / 2;
         sprite.setPosition(posx, posy);
 
         //set projectile speed
