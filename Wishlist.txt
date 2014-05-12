@@ -12,3 +12,4 @@
     - Kernel hit                      [     ]
     - Player hit                      [     ]
 - Independent ship deployment         [     ]
+- Custom BSOD when losing game	      [	    ]
