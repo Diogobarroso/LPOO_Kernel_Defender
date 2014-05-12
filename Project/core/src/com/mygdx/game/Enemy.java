@@ -17,7 +17,7 @@ public class Enemy {
     public float damage;
 
     public Enemy() {
-        texture = new Texture("sprites/virus.png");
+        texture = new Texture("sprites/virus1.png");
         sprite = new Sprite(texture);
         sprite.setOriginCenter();
         sprite.setScale(2.0f);
