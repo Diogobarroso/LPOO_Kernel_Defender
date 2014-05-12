@@ -14,9 +14,12 @@ public class Projectile {
 
     public float damage;
 
+    //animation data
+    private Sprite[] animation;
+
     public Projectile(float x, float y, float alpha) {
         //sprite loading
-        texture = new Texture("sprites/projectile.png");
+        texture = new Texture("sprites/projectile0.png");
         sprite = new Sprite(texture);
         //set origin in center
         sprite.setOriginCenter();
