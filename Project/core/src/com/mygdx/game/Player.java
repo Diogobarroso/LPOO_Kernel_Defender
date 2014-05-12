@@ -25,7 +25,7 @@ public class Player {
 
     public Player() {
         //sprite loading
-        texture = new Texture("sprites/tempship.png");
+        texture = new Texture("sprites/ship.png");
         sprite = new Sprite(texture);
         //set origin in center for correct scaling and rotation
         sprite.setOriginCenter();
