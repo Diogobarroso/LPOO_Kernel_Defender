@@ -23,7 +23,7 @@ public class KernelDefender extends ApplicationAdapter {
         worldController.Update();
         //drawing
         //clear screen
-		Gdx.gl.glClearColor(1, 1, 1, 1);
+		Gdx.gl.glClearColor(0.1f, 0.1f, 0.3f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         //render game objects
         worldRenderer.render();

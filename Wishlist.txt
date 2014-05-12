@@ -5,6 +5,7 @@
 - Simple enemy                        [CHECK]
 - Enemy health bar                    [CHECK]
 - Temporary Kernel                    [CHECK]
+- Enemies don't collide               []
 - Money (memory)                      [     ]
 - Component-based enemy               [     ]
 - Imprecise firing                    [     ]
