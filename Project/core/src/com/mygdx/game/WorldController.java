@@ -120,11 +120,12 @@ public class WorldController extends InputAdapter{
                 if(CheckCollision(projectile.sprite, enemy.sprite)) {
                     enemy.TakeDamage(projectile.damage);
                     projIter.remove();
-                }
-                //destroy if out of health
-                if(enemy.health <= 0.0f) {
-                    enemyIter.remove();
-                    enemyExplosion.play();
+                    //destroy if out of health
+                    if(enemy.health <= 0.0f) {
+                        enemyIter.remove();
+                        enemyExplosion.play();
+                    }
+                    break;
                 }
             }
         }
