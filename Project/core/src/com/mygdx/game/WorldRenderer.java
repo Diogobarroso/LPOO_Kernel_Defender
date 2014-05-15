@@ -30,9 +30,11 @@ public class WorldRenderer {
             worldController.player.sprite.draw(batch); //draw player
             for(Projectile projectile : worldController.player.projectiles) //draw projectiles
                 projectile.sprite.draw(batch);
+            for(Missile missile : worldController.player.missiles)
+                missile.sprite.draw(batch);
             for(Enemy enemy : worldController.enemies) //draw enemies
                 enemy.sprite.draw(batch);
-            for(FreeFallObject banana : worldController.bananas)
+            for(FreeFallObject banana : worldController.bananas) //draw bananas
                 banana.sprite.draw(batch);
         batch.end();
 

@@ -57,6 +57,7 @@ public class WorldController extends InputAdapter{
         BananaCheckBounds();
     }
 
+    //continuous input handler
     public void HandleInput() {
         if(Gdx.app.getType() != ApplicationType.Desktop)
             return;
@@ -74,6 +75,15 @@ public class WorldController extends InputAdapter{
         //BANANAS
         if(Gdx.input.isKeyPressed(Keys.B))
             bananas.add(new FreeFallObject());
+    }
+
+    //event handler
+    @Override
+    public boolean touchDown(int x, int y, int pointer, int button) {
+        if(button == Buttons.RIGHT) {
+            player.ShootMissiles();
+        }
+        return true;
     }
 
     public void EnemyUpdate() {

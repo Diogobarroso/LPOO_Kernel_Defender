@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public class Player {
     public Sprite sprite;
     public Vector<Projectile> projectiles;
+    public Vector<Missile> missiles;
     private Texture texture;
     //position data
     private float posx;
@@ -46,6 +47,9 @@ public class Player {
         //set shooting Freq
         shootingFreq = 5.0f;
         shootingTimer = 0.0f;
+
+        //prepare missile container
+        missiles = new Vector<Missile>();
 
         //set SFX
         shootingSound = Gdx.audio.newSound(Gdx.files.internal("sfx/Laser_Shoot2.wav"));
@@ -91,6 +95,10 @@ public class Player {
             shootingSound.play();
             shootingTimer -= 1 / shootingFreq;
         }
+    }
+
+    public void ShootMissiles() {
+        missiles.add(new Missile(posx, posy, kernelAngle + 90.0f));
     }
 
     private void UpdateProjectiles() {/*
