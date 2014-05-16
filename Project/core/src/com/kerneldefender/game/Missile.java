@@ -43,9 +43,12 @@ public class Missile {
         float distance = (float)Math.sqrt((target.posx - posx) * (target.posx - posx) + (target.posy - posy) * (target.posy - posy));
         targetAngle = (float)Math.toDegrees(Math.acos(deltax / distance));
         System.out.println(targetAngle + " " + angle);
-        if(Math.abs(targetAngle - angle) > 40.0f) {
+        if(Math.abs(targetAngle - angle) > 10.0f) {
             angle -= (rotSpeed * Gdx.graphics.getDeltaTime());
-            angle = angle % 360; //to avoid overflow
+            if (angle > 360)
+                angle %= 360; //to avoid overflow
+            if(angle < 0)
+                angle += 360;
             sprite.setRotation(angle);
         }
         posx += Math.cos(Math.toRadians(angle)) * speed * Gdx.graphics.getDeltaTime();
