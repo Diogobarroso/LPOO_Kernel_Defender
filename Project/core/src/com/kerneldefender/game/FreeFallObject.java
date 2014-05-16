@@ -23,17 +23,17 @@ public class FreeFallObject {
         posy = -20.0f - sprite.getHeight() / 2;
         sprite.setPosition(posx, posy);
 
-        velx = (float) Math.random() * 50 - 25;
-        vely = (float) Math.random() * 30;
+        velx = (float) Math.random() * 600 - 300;
+        vely = (float) Math.random() * 1000;
 
         rot = 0.0f;
         rotVel = (float) Math.random() * 720 - 360;
     }
 
     public void Move(){
-        vely -= 40 * Gdx.graphics.getDeltaTime();
-        posx += velx;
-        posy += vely;
+        vely -= 600 * Gdx.graphics.getDeltaTime();
+        posx += velx * Gdx.graphics.getDeltaTime();
+        posy += vely * Gdx.graphics.getDeltaTime();
         sprite.setPosition(posx, posy);
     }
 

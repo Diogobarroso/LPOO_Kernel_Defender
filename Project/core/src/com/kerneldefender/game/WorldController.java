@@ -81,7 +81,19 @@ public class WorldController extends InputAdapter{
     @Override
     public boolean touchDown(int x, int y, int pointer, int button) {
         if(button == Buttons.RIGHT) {
-            //player.ShootMissiles();
+            Enemy closestEnemy;
+            float bestDist = 10000.0f;
+            float deltax, deltay, distance;
+            for(Enemy enemy : enemies) {
+                deltax = enemy.posx - player.posx;
+                deltay = enemy.posy - player.posy;
+                distance = (float)Math.sqrt(deltax * deltax + deltay * deltay);
+                if(distance < bestDist) {
+                    bestDist = distance;
+                    closestEnemy = enemy;
+                }
+            }
+            player.ShootMissiles(closestEnemy);
         }
         return true;
     }

@@ -14,8 +14,8 @@ public class Player {
     public Vector<Missile> missiles;
     private Texture texture;
     //position data
-    private float posx;
-    private float posy;
+    public float posx;
+    public float posy;
     //angle from kernel
     private float kernelAngle;
     private float kernelDistance;
