@@ -31,18 +31,20 @@ public class Missile {
         angle = alpha;
 
         //set speeds
-        speed = 100.0f;
-        rotSpeed = 180.0f;
+        speed = 200.0f;
+        rotSpeed = 360.0f;
 
         //set target
         target = enemy;
     }
 
     public void Move() {
-        float deltax = target.posx - posx;
+        float deltax = target.posx + target.sprite.getWidth() / 2 - posx;
+        float deltay = target.posy + target.sprite.getHeight() / 2 - posy;
         float distance = (float)Math.sqrt((target.posx - posx) * (target.posx - posx) + (target.posy - posy) * (target.posy - posy));
         targetAngle = (float)Math.toDegrees(Math.acos(deltax / distance));
-        System.out.println(targetAngle + " " + angle);
+        if(deltay < 0)
+            targetAngle = 360 - targetAngle;
         if(Math.abs(targetAngle - angle) > 10.0f) {
             angle -= (rotSpeed * Gdx.graphics.getDeltaTime());
             if (angle > 360)

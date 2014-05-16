@@ -16,6 +16,7 @@ public class Player {
     //position data
     public float posx;
     public float posy;
+    private float angle;
     //angle from kernel
     private float kernelAngle;
     private float kernelDistance;
@@ -66,10 +67,10 @@ public class Player {
         double xdelta = Gdx.input.getX() - (posx + sprite.getWidth() / 2);
         double ydelta = 720 - Gdx.input.getY() - (posy + sprite.getHeight() / 2); //TODO: set this relative to screen vertical size
         double distance = Math.sqrt(xdelta * xdelta + ydelta * ydelta);
-        double angle = Math.toDegrees(Math.acos(xdelta / distance));
+        angle = (float)Math.toDegrees(Math.acos(xdelta / distance));
         if(ydelta < 0)
             angle = -angle;
-        sprite.setRotation((float) angle - 90.0f); //adding 90 degrees is necessary, since the sprite was drawn facing upwards
+        sprite.setRotation(angle - 90.0f); //adding 90 degrees is necessary, since the sprite was drawn facing upwards
     }
 
     public void Move(String direction) {
@@ -99,7 +100,7 @@ public class Player {
     }
 
     public void ShootMissiles(Enemy enemy) {
-        Missile missile = new Missile(posx, posy, kernelAngle + 90.0f, enemy);
+        Missile missile = new Missile(posx + sprite.getWidth() / 2, posy + sprite.getHeight() / 2, angle + 90.0f, enemy);
         missiles.add(missile);
     }
 
