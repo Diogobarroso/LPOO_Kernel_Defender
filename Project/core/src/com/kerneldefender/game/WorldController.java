@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.kerneldefender.game;
 
 import java.util.Iterator;
 import java.util.Vector;
@@ -81,7 +81,7 @@ public class WorldController extends InputAdapter{
     @Override
     public boolean touchDown(int x, int y, int pointer, int button) {
         if(button == Buttons.RIGHT) {
-            player.ShootMissiles();
+            //player.ShootMissiles();
         }
         return true;
     }

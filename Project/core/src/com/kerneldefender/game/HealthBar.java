@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.kerneldefender.game;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;

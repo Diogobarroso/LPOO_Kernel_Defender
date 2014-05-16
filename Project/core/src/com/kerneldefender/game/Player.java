@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.kerneldefender.game;
 
 import java.lang.Math;
 import java.util.Iterator;

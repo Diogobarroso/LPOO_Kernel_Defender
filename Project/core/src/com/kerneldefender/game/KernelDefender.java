@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.kerneldefender.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -7,15 +7,15 @@ import com.badlogic.gdx.graphics.GL20;
 public class KernelDefender extends ApplicationAdapter {
     WorldController worldController;
     WorldRenderer worldRenderer;
-	
-	@Override
-	public void create () {
-		worldController = new WorldController();
-        worldRenderer = new WorldRenderer(worldController);
-	}
 
-	@Override
-	public void render () {
+    @Override
+    public void create () {
+        worldController = new WorldController();
+        worldRenderer = new WorldRenderer(worldController);
+    }
+
+    @Override
+    public void render () {
         //main game loop
         //handle input
         worldController.HandleInput();
@@ -23,11 +23,11 @@ public class KernelDefender extends ApplicationAdapter {
         worldController.Update();
         //drawing
         //clear screen
-		Gdx.gl.glClearColor(0.4f, 0.4f, 0.4f, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClearColor(0.4f, 0.4f, 0.4f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         //render game objects
         worldRenderer.render();
-	}
+    }
 
     @Override
     public void resize(int width, int height) {
