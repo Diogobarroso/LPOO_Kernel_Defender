@@ -11,7 +11,6 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-
 public class WorldController extends InputAdapter{
     public Kernel kernel;
     public Player player;
@@ -81,7 +80,7 @@ public class WorldController extends InputAdapter{
     @Override
     public boolean touchDown(int x, int y, int pointer, int button) {
         if(button == Buttons.RIGHT) {
-            Enemy closestEnemy;
+            Enemy closestEnemy = null;
             float bestDist = 10000.0f;
             float deltax, deltay, distance;
             for(Enemy enemy : enemies) {
@@ -93,7 +92,8 @@ public class WorldController extends InputAdapter{
                     closestEnemy = enemy;
                 }
             }
-            player.ShootMissiles(closestEnemy);
+            if(closestEnemy != null)
+                player.ShootMissiles(closestEnemy);
         }
         return true;
     }

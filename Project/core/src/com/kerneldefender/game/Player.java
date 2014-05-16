@@ -58,6 +58,7 @@ public class Player {
     public void Update() {
         UpdateOrientation();
         UpdateProjectiles();
+        UpdateMissiles();
     }
 
     private void UpdateOrientation() {
@@ -98,9 +99,8 @@ public class Player {
     }
 
     public void ShootMissiles(Enemy enemy) {
-        Missile missile = new Missile(posx, posy, kernelAngle + 90.0f);
+        Missile missile = new Missile(posx, posy, kernelAngle + 90.0f, enemy);
         missiles.add(missile);
-        missile.target = enemy;
     }
 
     private void UpdateProjectiles() {
