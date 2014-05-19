@@ -50,6 +50,7 @@ public class WorldController extends InputAdapter{
         //player updates
         player.Update();
         PlayerMissileBarrage();
+        PlayerMissileRetasking();
 
         //enemy updates
         EnemyUpdate();
@@ -115,6 +116,29 @@ public class WorldController extends InputAdapter{
                 if (closestEnemy != null)
                     player.ShootMissiles(closestEnemy);
                 player.missilesFired++;
+            }
+        }
+    }
+
+    public void PlayerMissileRetasking() {
+        Iterator<Missile> iter = player.missiles.iterator();
+
+        while(iter.hasNext()) {
+            Missile missile = iter.next();
+            if(missile.posx > 1280.0f || missile.posx < 0.0f || missile.posy > 720.0f || missile.posy < 0.0f || missile.target.health <= 0.0f) {
+                Enemy closestEnemy = null;
+                float bestDist = 10000.0f;
+                float deltax, deltay, distance;
+                for (Enemy enemy : enemies) {
+                    deltax = enemy.posx - player.posx;
+                    deltay = enemy.posy - player.posy;
+                    distance = (float) Math.sqrt(deltax * deltax + deltay * deltay);
+                    if (distance < bestDist) {
+                        bestDist = distance;
+                        closestEnemy = enemy;
+                    }
+                }
+                missile.target = closestEnemy;
             }
         }
     }

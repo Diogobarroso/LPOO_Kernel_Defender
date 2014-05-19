@@ -147,7 +147,7 @@ public class Player {
         while(iter.hasNext()) {
             Missile missile = iter.next();
             missile.Move();
-            if(missile.posx > 1280.0f || missile.posx < 0.0f || missile.posy > 720.0f || missile.posy < 0.0f || missile.target.health <= 0.0f)
+            if(missile.posx > 1480.0f || missile.posx < -200.0f || missile.posy > 920.0f || missile.posy < -200.0f)
                 iter.remove();
         }
     }
