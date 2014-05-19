@@ -27,6 +27,7 @@ public class WorldRenderer {
 
         batch.enableBlending(); //for transparent png's TODO: maybe this only needs to be used once?
         batch.begin();
+            worldController.bg.draw(batch);
             worldController.player.sprite.draw(batch); //draw player
             for(Projectile projectile : worldController.player.projectiles) //draw projectiles
                 projectile.sprite.draw(batch);

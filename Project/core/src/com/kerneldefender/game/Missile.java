@@ -57,8 +57,10 @@ public class Missile {
                 angle -= (rotSpeed * Gdx.graphics.getDeltaTime());
             if(angle > 360)
                 angle %= 360; //to avoid overflow
-            if(angle < 0)
-                angle += 360;
+            if(angle < 0) {
+                angle += 360.0f;
+                System.out.println(angle);
+            }
             sprite.setRotation(angle);
         }
         posx += Math.cos(Math.toRadians(angle)) * speed * Gdx.graphics.getDeltaTime();

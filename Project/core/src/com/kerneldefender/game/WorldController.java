@@ -9,6 +9,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class WorldController extends InputAdapter{
@@ -16,6 +17,8 @@ public class WorldController extends InputAdapter{
     public Player player;
     public Vector<Enemy> enemies;
     public Vector<FreeFallObject> bananas;
+    private Texture bg_text;
+    public Sprite bg;
     private float enemySpawnFreq;
     private float enemySpawnTimer;
     private Music music;
@@ -33,6 +36,8 @@ public class WorldController extends InputAdapter{
         enemySpawnTimer = 0.0f;
         enemies = new Vector<Enemy>();
         bananas = new Vector<FreeFallObject>();
+        bg_text = new Texture("sprites/testbackground.png");
+        bg = new Sprite(bg_text);
 
         music = Gdx.audio.newMusic(Gdx.files.internal("music/testmusic.ogg"));
         music.setLooping(true);
