@@ -63,7 +63,7 @@ public class Player {
         shootingMissiles = false;
         missileShootCapacity = 5.0f;
         missilesFired = 0.0f;
-        missileShootFreq = 5.0f;
+        missileShootFreq = 10.0f; //missiles per second
         missileTimer = 0.0f;
 
         //set SFX
@@ -147,7 +147,7 @@ public class Player {
         while(iter.hasNext()) {
             Missile missile = iter.next();
             missile.Move();
-            if(missile.posx > 1280.0f || missile.posx < 0.0f || missile.posy > 720.0f || missile.posy < 0.0f)
+            if(missile.posx > 1280.0f || missile.posx < 0.0f || missile.posy > 720.0f || missile.posy < 0.0f || missile.target.health <= 0.0f)
                 iter.remove();
         }
     }

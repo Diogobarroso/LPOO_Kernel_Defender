@@ -33,7 +33,7 @@ public class Missile {
         angle = alpha;
 
         //set speeds
-        speed = 200.0f;
+        speed = 400.0f;
         rotSpeed = 360.0f;
 
         //set damage
@@ -51,20 +51,22 @@ public class Missile {
         if(deltay < 0)
             targetAngle = 360 - targetAngle;
         if(Math.abs(targetAngle - angle) > 5.0f) {
-            if(targetAngle - angle < 180)
+            if((targetAngle - angle > 0 && targetAngle - angle < 180) || (targetAngle - angle < -180 && targetAngle - angle > -360))
                 angle += (rotSpeed * Gdx.graphics.getDeltaTime());
-            else
+            else if((targetAngle - angle < 0 && targetAngle - angle > -180) || (targetAngle - angle < 360 && targetAngle - angle > 180))
                 angle -= (rotSpeed * Gdx.graphics.getDeltaTime());
             if(angle > 360)
                 angle %= 360; //to avoid overflow
-            if(angle < 0) {
+            if(angle < 0)
                 angle += 360.0f;
-                System.out.println(angle);
-            }
             sprite.setRotation(angle);
         }
         posx += Math.cos(Math.toRadians(angle)) * speed * Gdx.graphics.getDeltaTime();
         posy += Math.sin(Math.toRadians(angle)) * speed * Gdx.graphics.getDeltaTime();
         sprite.setPosition(posx, posy);
+    }
+
+    public boolean CheckNullTarget() {
+        return target == null;
     }
 }
