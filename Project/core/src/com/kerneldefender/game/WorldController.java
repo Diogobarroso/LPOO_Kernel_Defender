@@ -106,9 +106,9 @@ public class WorldController extends InputAdapter{
                         bestDist = distance;
                         closestEnemy = enemy;
                     }
-                    if (closestEnemy != null)
-                        player.ShootMissiles(closestEnemy);
                 }
+                if (closestEnemy != null)
+                    player.ShootMissiles(closestEnemy);
                 player.missilesFired++;
             }
         }

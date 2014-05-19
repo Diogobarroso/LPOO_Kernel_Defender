@@ -26,6 +26,7 @@ public class Player {
     private Sound shootingSound;
     //missile shooting specs
     public boolean shootingMissiles;
+    private boolean missileDirection;
     public float missileShootCapacity;
     public float missilesFired;
     public float missileShootFreq;
@@ -128,7 +129,15 @@ public class Player {
     }
 
     public void ShootMissiles(Enemy enemy) {
-        Missile missile = new Missile(posx + sprite.getWidth() / 2, posy + sprite.getHeight() / 2, angle + 90.0f, enemy);
+        float directionChange;
+        if(missileDirection) {
+            directionChange = 90.0f;
+            missileDirection = false;
+        } else {
+            directionChange = -90.0f;
+            missileDirection = true;
+        }
+        Missile missile = new Missile(posx + sprite.getWidth() / 2, posy + sprite.getHeight() / 2, angle + directionChange, enemy);
         missiles.add(missile);
     }
 
