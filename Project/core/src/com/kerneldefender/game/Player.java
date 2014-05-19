@@ -24,6 +24,12 @@ public class Player {
     private float shootingFreq; //times per sec
     private float shootingTimer;
     private Sound shootingSound;
+    //missile shooting specs
+    public boolean shootingMissiles;
+    public float missileShootCapacity;
+    public float missilesFired;
+    public float missileShootFreq;
+    public float missileTimer;
 
     public Player() {
         //sprite loading
@@ -51,6 +57,13 @@ public class Player {
 
         //prepare missile container
         missiles = new Vector<Missile>();
+
+        //missile specs
+        shootingMissiles = false;
+        missileShootCapacity = 5.0f;
+        missilesFired = 0.0f;
+        missileShootFreq = 5.0f;
+        missileTimer = 0.0f;
 
         //set SFX
         shootingSound = Gdx.audio.newSound(Gdx.files.internal("sfx/Laser_Shoot2.wav"));
@@ -99,11 +112,6 @@ public class Player {
         }
     }
 
-    public void ShootMissiles(Enemy enemy) {
-        Missile missile = new Missile(posx + sprite.getWidth() / 2, posy + sprite.getHeight() / 2, angle + 90.0f, enemy);
-        missiles.add(missile);
-    }
-
     private void UpdateProjectiles() {
         Iterator<Projectile> iter = projectiles.iterator();
 
@@ -113,6 +121,15 @@ public class Player {
             if(projectile.posx > 1280.0f || projectile.posx < 0.0f || projectile.posy > 720.0f || projectile.posy < 0.0f)
                 iter.remove();
         }
+    }
+
+    public void DeployMissiles() {
+        shootingMissiles = true;
+    }
+
+    public void ShootMissiles(Enemy enemy) {
+        Missile missile = new Missile(posx + sprite.getWidth() / 2, posy + sprite.getHeight() / 2, angle + 90.0f, enemy);
+        missiles.add(missile);
     }
 
     private void UpdateMissiles() {

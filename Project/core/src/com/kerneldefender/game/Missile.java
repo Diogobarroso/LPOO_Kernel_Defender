@@ -13,6 +13,8 @@ public class Missile {
     private float rotSpeed;
     private float angle;
     private float targetAngle;
+
+    public float damage;
     public Enemy target;
 
     public Missile(float x, float y, float alpha, Enemy enemy) {
@@ -34,6 +36,9 @@ public class Missile {
         speed = 200.0f;
         rotSpeed = 360.0f;
 
+        //set damage
+        damage = 3.0f;
+
         //set target
         target = enemy;
     }
@@ -45,9 +50,12 @@ public class Missile {
         targetAngle = (float)Math.toDegrees(Math.acos(deltax / distance));
         if(deltay < 0)
             targetAngle = 360 - targetAngle;
-        if(Math.abs(targetAngle - angle) > 10.0f) {
-            angle -= (rotSpeed * Gdx.graphics.getDeltaTime());
-            if (angle > 360)
+        if(Math.abs(targetAngle - angle) > 5.0f) {
+            if(targetAngle - angle < 180)
+                angle += (rotSpeed * Gdx.graphics.getDeltaTime());
+            else
+                angle -= (rotSpeed * Gdx.graphics.getDeltaTime());
+            if(angle > 360)
                 angle %= 360; //to avoid overflow
             if(angle < 0)
                 angle += 360;

@@ -44,6 +44,7 @@ public class WorldController extends InputAdapter{
     public void Update() {
         //player updates
         player.Update();
+        PlayerMissileBarrage();
 
         //enemy updates
         EnemyUpdate();
@@ -79,23 +80,38 @@ public class WorldController extends InputAdapter{
     //event handler
     @Override
     public boolean touchDown(int x, int y, int pointer, int button) {
-        if(button == Buttons.RIGHT) {
-            Enemy closestEnemy = null;
-            float bestDist = 10000.0f;
-            float deltax, deltay, distance;
-            for(Enemy enemy : enemies) {
-                deltax = enemy.posx - player.posx;
-                deltay = enemy.posy - player.posy;
-                distance = (float)Math.sqrt(deltax * deltax + deltay * deltay);
-                if(distance < bestDist) {
-                    bestDist = distance;
-                    closestEnemy = enemy;
-                }
-            }
-            if(closestEnemy != null)
-                player.ShootMissiles(closestEnemy);
-        }
+        if(button == Buttons.RIGHT)
+            player.DeployMissiles();
         return true;
+    }
+
+    public void PlayerMissileBarrage() {
+        if(player.shootingMissiles) {
+            player.missileTimer += Gdx.graphics.getDeltaTime();
+            if(player.missileTimer >= 1.0f) {
+                player.shootingMissiles = false;
+                player.missileTimer = 0.0f;
+                player.missilesFired = 0.0f;
+            }
+
+            if(player.missilesFired < player.missileShootCapacity && player.missileTimer > player.missilesFired / player.missileShootFreq) {
+                Enemy closestEnemy = null;
+                float bestDist = 10000.0f;
+                float deltax, deltay, distance;
+                for (Enemy enemy : enemies) {
+                    deltax = enemy.posx - player.posx;
+                    deltay = enemy.posy - player.posy;
+                    distance = (float) Math.sqrt(deltax * deltax + deltay * deltay);
+                    if (distance < bestDist) {
+                        bestDist = distance;
+                        closestEnemy = enemy;
+                    }
+                    if (closestEnemy != null)
+                        player.ShootMissiles(closestEnemy);
+                }
+                player.missilesFired++;
+            }
+        }
     }
 
     public void EnemyUpdate() {
@@ -142,6 +158,29 @@ public class WorldController extends InputAdapter{
                 if(CheckCollision(projectile.sprite, enemy.sprite)) {
                     enemy.TakeDamage(projectile.damage);
                     projIter.remove();
+                    //destroy if out of health
+                    if(enemy.health <= 0.0f) {
+                        enemyIter.remove();
+                        enemyExplosion.play();
+                    }
+                    break;
+                }
+            }
+        }
+
+        Iterator<Missile> missIter = player.missiles.iterator();
+
+        while(missIter.hasNext()) {
+            Missile missile = missIter.next();
+            Iterator<Enemy> enemyIter = enemies.iterator();
+
+            while(enemyIter.hasNext()) {
+                Enemy enemy = enemyIter.next();
+                //deal damage
+                if(CheckCollision(missile.sprite, enemy.sprite)) {
+                    enemy.TakeDamage(missile.damage);
+                    //removing missile
+                    missIter.remove();
                     //destroy if out of health
                     if(enemy.health <= 0.0f) {
                         enemyIter.remove();
