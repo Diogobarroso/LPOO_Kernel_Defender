@@ -21,6 +21,8 @@ public class WorldController extends InputAdapter{
     public Sprite bg;
     private float enemySpawnFreq;
     private float enemySpawnTimer;
+    private float complexEnemySpawnFreq;
+    private float complexEnemySpawnTimer;
     private Music music;
     private Sound enemyExplosion;
     public Cursor cursor;
@@ -33,8 +35,10 @@ public class WorldController extends InputAdapter{
         Gdx.input.setInputProcessor(this);
         player = new Player();
         kernel = new Kernel();
-        enemySpawnFreq = 1.0f;
+        enemySpawnFreq = 0.30f;
         enemySpawnTimer = 0.0f;
+        complexEnemySpawnFreq = 0.2f;
+        complexEnemySpawnTimer = 0.0f;
         enemies = new Vector<Enemy>();
         bananas = new Vector<FreeFallObject>();
         bg_text = new Texture("sprites/testbackground.png");
