@@ -37,6 +37,7 @@ public class WorldRenderer {
                 enemy.sprite.draw(batch);
             for(FreeFallObject banana : worldController.bananas) //draw bananas
                 banana.sprite.draw(batch);
+            worldController.cursor.sprite.draw(batch);
         batch.end();
 
         //need separate drawing method for health bars, since they're basic shapes

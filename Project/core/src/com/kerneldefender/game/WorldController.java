@@ -23,6 +23,7 @@ public class WorldController extends InputAdapter{
     private float enemySpawnTimer;
     private Music music;
     private Sound enemyExplosion;
+    public Cursor cursor;
 
     public WorldController() {
         Init();
@@ -38,6 +39,7 @@ public class WorldController extends InputAdapter{
         bananas = new Vector<FreeFallObject>();
         bg_text = new Texture("sprites/testbackground.png");
         bg = new Sprite(bg_text);
+        cursor = new Cursor();
 
         music = Gdx.audio.newMusic(Gdx.files.internal("music/testmusic.ogg"));
         music.setLooping(true);
@@ -61,6 +63,9 @@ public class WorldController extends InputAdapter{
         //fruity updates
         BananaUpdate();
         BananaCheckBounds();
+
+        //cursor updates
+        cursor.Update();
     }
 
     //continuous input handler

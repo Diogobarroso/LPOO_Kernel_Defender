@@ -10,6 +10,7 @@ public class KernelDefender extends ApplicationAdapter {
 
     @Override
     public void create () {
+        Gdx.input.setCursorCatched(true);
         worldController = new WorldController();
         worldRenderer = new WorldRenderer(worldController);
     }
