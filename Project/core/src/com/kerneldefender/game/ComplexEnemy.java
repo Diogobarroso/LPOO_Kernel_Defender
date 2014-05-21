@@ -48,7 +48,7 @@ public class ComplexEnemy {
     }
 
     public void Move() {
-        posx += ;
-        posy += ;
+        posx += 0;
+        posy += 0;
     }
 }

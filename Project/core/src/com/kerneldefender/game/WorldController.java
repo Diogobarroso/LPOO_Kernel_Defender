@@ -35,9 +35,9 @@ public class WorldController extends InputAdapter{
         Gdx.input.setInputProcessor(this);
         player = new Player();
         kernel = new Kernel();
-        enemySpawnFreq = 0.30f;
+        enemySpawnFreq = 0.5f;
         enemySpawnTimer = 0.0f;
-        complexEnemySpawnFreq = 0.2f;
+        complexEnemySpawnFreq = 0.1f;
         complexEnemySpawnTimer = 0.0f;
         enemies = new Vector<Enemy>();
         bananas = new Vector<FreeFallObject>();
