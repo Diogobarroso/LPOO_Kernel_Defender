@@ -5,8 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 
 public class KernelDefender extends ApplicationAdapter {
-    WorldController worldController;
-    WorldRenderer worldRenderer;
+    private WorldController worldController;
+    private WorldRenderer worldRenderer;
 
     @Override
     public void create () {

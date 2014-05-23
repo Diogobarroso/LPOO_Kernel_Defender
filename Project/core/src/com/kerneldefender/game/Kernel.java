@@ -6,11 +6,13 @@ public class Kernel {
     private float posx;
     private float posy;
     private ShapeRenderer shapeRenderer;
-    private float health = 100.0f;
+    private float health;
 
     public Kernel() {
         posx = 0.0f;
         posy = 720.0f;
+
+        health = 100.0f;
 
         shapeRenderer = new ShapeRenderer();
     }
