@@ -22,7 +22,7 @@ public class WorldRenderer {
         fpstext.setColor(0.0f, 1.0f, 1.0f, 1.0f);
     }
 
-    public void render() {
+    public void Render() {
         fps = Gdx.graphics.getFramesPerSecond();
 
         batch.enableBlending(); //for transparent png's TODO: maybe this only needs to be used once?
