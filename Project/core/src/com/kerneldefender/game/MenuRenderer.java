@@ -20,6 +20,10 @@ public class MenuRenderer {
         batch.begin();
             menuController.bg.draw(batch);
             menuController.ship.draw(batch);
+            menuController.play.draw(batch);
+            menuController.options.draw(batch);
+            menuController.credits.draw(batch);
+            menuController.exit.draw(batch);
         batch.end();
     }
 }

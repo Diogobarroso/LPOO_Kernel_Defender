@@ -1,17 +1,30 @@
 package com.kerneldefender.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class MenuController extends InputAdapter {
-    Texture bg_text;
-    Sprite bg;
-    Texture ship_text;
-    Sprite ship;
-    float rot;
-    float shipRotSpeed;
+    private Texture bg_text;
+    public Sprite bg;
+    private Texture ship_text;
+    public Sprite ship;
+    private float rot;
+    private float shipRotSpeed;
+
+    //buttons
+    private Texture play_text;
+    public Sprite play;
+    private Texture options_text;
+    public Sprite options;
+    private Texture credits_text;
+    public Sprite credits;
+    private Texture exit_text;
+    public Sprite exit;
+
+    public Cursor cursor;
 
     public MenuController() {
         Init();
@@ -31,10 +44,37 @@ public class MenuController extends InputAdapter {
         rot = 0.0f;
         ship.setRotation(rot);
         shipRotSpeed = 22.5f;
+
+        //load buttons
+        play_text = new Texture("sprites/playbutton.png");
+        play = new Sprite(play_text);
+        play.setPosition(900.0f, 400.0f);
+        options_text = new Texture("sprites/optionsbutton.png");
+        options = new Sprite(options_text);
+        options.setPosition(900.0f, 300.0f);
+        credits_text = new Texture("sprites/creditsbutton.png");
+        credits = new Sprite(credits_text);
+        credits.setPosition(900.0f, 200.0f);
+        exit_text = new Texture("sprites/exitbutton.png");
+        exit = new Sprite(exit_text);
+        exit.setPosition(900.0f, 100.0f);
     }
 
     public void Update() {
         rot += shipRotSpeed * Gdx.graphics.getDeltaTime();
         ship.setRotation(rot);
+    }
+
+    //event handler
+    @Override
+    public boolean touchDown(int x, int y, int pointer, int button) {
+        if(button == Input.Buttons.LEFT)
+            if(CheckMouseClick(cursor, play))
+                ;
+        return true;
+    }
+
+    private boolean CheckMouseClick(Cursor crsr, Sprite sprt) {
+        return (crsr.sprite.getX() + crsr.sprite.getWidth() / 2 > sprt.getX() && crsr.sprite.getX() + crsr.sprite.getWidth() / 2 < sprt.getX() + sprt.getWidth() && crsr.sprite.getY() + crsr.sprite.getHeight() / 2 > sprt.getY() && crsr.sprite.getY() + crsr.sprite.getHeight() / 2 < sprt.getY() + sprt.getHeight());
     }
 }
