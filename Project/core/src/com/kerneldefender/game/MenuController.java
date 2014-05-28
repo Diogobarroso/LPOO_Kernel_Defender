@@ -7,6 +7,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class MenuController extends InputAdapter {
+    //for state transition
+    int state = 0; // 0 -> current 1 -> PLAY
+
     private Texture bg_text;
     public Sprite bg;
     private Texture ship_text;
@@ -31,6 +34,8 @@ public class MenuController extends InputAdapter {
     }
 
     public void Init() {
+        Gdx.input.setInputProcessor(this);
+
         //load background
         bg_text = new Texture("sprites/testbackground.png");
         bg = new Sprite(bg_text);
@@ -58,23 +63,39 @@ public class MenuController extends InputAdapter {
         exit_text = new Texture("sprites/exitbutton.png");
         exit = new Sprite(exit_text);
         exit.setPosition(900.0f, 100.0f);
+
+        //load cursor
+        cursor = new Cursor();
     }
 
-    public void Update() {
+    public void Update(KernelDefender kd) {
         rot += shipRotSpeed * Gdx.graphics.getDeltaTime();
         ship.setRotation(rot);
+
+        cursor.Update();
+
+        if(state != 0)
+            switch(state) {
+                case 1:
+                    kd.currentMode = KernelDefender.Mode.PLAY;
+                    kd.worldController.Init();
+                    break;
+            }
     }
 
     //event handler
     @Override
     public boolean touchDown(int x, int y, int pointer, int button) {
         if(button == Input.Buttons.LEFT)
-            if(CheckMouseClick(cursor, play))
-                ;
+            if(CheckMouseClick(cursor, play)) {
+                state = 1;
+                System.out.println("PLAY");
+            }
+        System.out.println("Click");
         return true;
     }
 
     private boolean CheckMouseClick(Cursor crsr, Sprite sprt) {
-        return (crsr.sprite.getX() + crsr.sprite.getWidth() / 2 > sprt.getX() && crsr.sprite.getX() + crsr.sprite.getWidth() / 2 < sprt.getX() + sprt.getWidth() && crsr.sprite.getY() + crsr.sprite.getHeight() / 2 > sprt.getY() && crsr.sprite.getY() + crsr.sprite.getHeight() / 2 < sprt.getY() + sprt.getHeight());
+        return ((crsr.sprite.getX() + crsr.sprite.getWidth() / 2) > (sprt.getX()) && (crsr.sprite.getX() + crsr.sprite.getWidth() / 2) < (sprt.getX() + sprt.getWidth()) && (crsr.sprite.getY() + crsr.sprite.getHeight() / 2) > (sprt.getY()) && (crsr.sprite.getY() + crsr.sprite.getHeight() / 2) < (sprt.getY() + sprt.getHeight()));
     }
 }

@@ -5,12 +5,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 
 public class KernelDefender extends ApplicationAdapter {
-    private enum Mode {MENU, PLAY};
-    private Mode currentMode;
-    private MenuController menuController;
-    private MenuRenderer menuRenderer;
-    private WorldController worldController;
-    private WorldRenderer worldRenderer;
+    public enum Mode {MENU, PLAY};
+    static Mode currentMode;
+    public MenuController menuController;
+    public MenuRenderer menuRenderer;
+    public WorldController worldController;
+    public WorldRenderer worldRenderer;
 
     @Override
     public void create () {
@@ -22,6 +22,9 @@ public class KernelDefender extends ApplicationAdapter {
         menuRenderer = new MenuRenderer(menuController);
         worldController = new WorldController();
         worldRenderer = new WorldRenderer(worldController);
+
+        //initial game mode
+        menuController.Init();
     }
 
     @Override
@@ -31,7 +34,7 @@ public class KernelDefender extends ApplicationAdapter {
         switch(currentMode) {
             case MENU:
                 //general updates
-                menuController.Update();
+                menuController.Update(this);
                 //drawing
                 //clear screen
                 Gdx.gl.glClearColor(0.4f, 0.4f, 0.4f, 1);

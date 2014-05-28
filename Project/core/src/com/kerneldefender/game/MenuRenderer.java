@@ -24,6 +24,7 @@ public class MenuRenderer {
             menuController.options.draw(batch);
             menuController.credits.draw(batch);
             menuController.exit.draw(batch);
+            menuController.cursor.sprite.draw(batch);
         batch.end();
     }
 }
