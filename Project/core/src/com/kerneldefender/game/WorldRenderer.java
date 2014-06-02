@@ -35,6 +35,8 @@ public class WorldRenderer {
                 missile.sprite.draw(batch);
             for(Enemy enemy : worldController.enemies) //draw enemies
                 enemy.sprite.draw(batch);
+            for(ComplexEnemy complexEnemy : worldController.complexEnemies)
+                complexEnemy.Draw(batch);
             for(FreeFallObject banana : worldController.bananas) //draw bananas
                 banana.sprite.draw(batch);
             worldController.cursor.sprite.draw(batch);
