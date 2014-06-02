@@ -16,6 +16,7 @@ public class WorldController extends InputAdapter{
     public Kernel kernel;
     public Player player;
     public Vector<Enemy> enemies;
+    public Vector<ComplexEnemy> complexEnemies;
     public Vector<FreeFallObject> bananas;
     private Texture bg_text;
     public Sprite bg;
@@ -40,6 +41,7 @@ public class WorldController extends InputAdapter{
         complexEnemySpawnFreq = 0.1f;
         complexEnemySpawnTimer = 0.0f;
         enemies = new Vector<Enemy>();
+        complexEnemies = new Vector<ComplexEnemy>();
         bananas = new Vector<FreeFallObject>();
         bg_text = new Texture("sprites/testbackground.png");
         bg = new Sprite(bg_text);
@@ -153,16 +155,26 @@ public class WorldController extends InputAdapter{
     }
 
     public void EnemyUpdate() {
-        for(Enemy enemy : enemies) {
+        for(Enemy enemy : enemies)
             enemy.Move();
-        }
+
+        for(ComplexEnemy complexEnemy : complexEnemies)
+            complexEnemy.Move();
     }
 
     public void EnemySpawning() {
+        //normal enemy spawning
         enemySpawnTimer += Gdx.graphics.getDeltaTime();
         if(enemySpawnTimer >= 1 / enemySpawnFreq) {
             enemies.add(new Enemy());
             enemySpawnTimer -= 1 / enemySpawnFreq;
+        }
+
+        //complex enemy spawning
+        complexEnemySpawnTimer += Gdx.graphics.getDeltaTime();
+        if(complexEnemySpawnTimer >= 1 / complexEnemySpawnFreq) {
+            complexEnemies.add(new ComplexEnemy());
+            complexEnemySpawnTimer -= 1 / complexEnemySpawnFreq;
         }
     }
 
