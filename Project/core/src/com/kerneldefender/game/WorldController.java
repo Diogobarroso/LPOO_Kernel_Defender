@@ -29,7 +29,6 @@ public class WorldController extends InputAdapter{
     public Cursor cursor;
 
     public WorldController() {
-        Init();
     }
 
     public void Init() {

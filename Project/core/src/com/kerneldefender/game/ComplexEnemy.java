@@ -36,19 +36,15 @@ public class ComplexEnemy {
         }
 
         //element positioning, relative to complex position
-        elements[0].posx = -10.0f;
-        elements[1].posx = 4.0f;
-        elements[2].posx = 90.0f;
+        elements[0].posx = posx -8.0f;
+        elements[1].posx = posx - 8.0f + 50.0f;
+        elements[2].posx = posx - 8.0f + 100.0f;
 
         speed = 20.0f;
 
         for(int i = 0; i < 3; i++) {
-            elements[i].posy = 20.0f;
+            elements[i].posy = posy - 8.0f;
         }
-
-        elements[0].posx = 0.0f;
-        elements[1].posx = 50.0f;
-        elements[2].posx = 100.0f;
 
         //rotation of complex and elements
         float deltax = posx;
@@ -59,18 +55,18 @@ public class ComplexEnemy {
             angle = -angle;
         sprite.setRotation(angle - 90.0f);
 
-        elements[0].sprite.setOrigin(55.0f, 0.0f);
-        elements[0].sprite.setRotation(angle - 90.0f);
+        elements[0].sprite.setOrigin(58.0f, -4.5f);
+        //elements[0].sprite.setRotation(angle + 90.0f);
         elements[0].sprite.setOriginCenter();
         elements[0].sprite.setRotation(0.0f);
 
         elements[1].sprite.setOrigin(100.0f, sprite.getHeight() / 2);
-        elements[1].sprite.setRotation(angle -90.0f - 45.0f);
+        //elements[1].sprite.setRotation(angle + 90.0f - 45.0f);
         elements[1].sprite.setOriginCenter();
         elements[1].sprite.setRotation(0.0f);
 
         elements[2].sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
-        elements[2].sprite.setRotation(angle - 90.0f - 90.0f);
+        //elements[2].sprite.setRotation(angle - 90.0f - 90.0f);
         elements[2].sprite.setOriginCenter();
         elements[2].sprite.setRotation(0.0f);
     }
@@ -84,8 +80,11 @@ public class ComplexEnemy {
     public void Move() {
         posx += Math.cos(Math.toRadians(angle)) * speed * Gdx.graphics.getDeltaTime();
         posy += Math.sin(Math.toRadians(angle)) * speed * Gdx.graphics.getDeltaTime();
-        for(Enemy element : elements)
-            element.sprite.setPosition(posx, posy);
+        for(Enemy element : elements) {
+            element.posx += Math.cos(Math.toRadians(angle)) * speed * Gdx.graphics.getDeltaTime();
+            element.posy += Math.sin(Math.toRadians(angle)) * speed * Gdx.graphics.getDeltaTime();
+            element.sprite.setPosition(element.posx, element.posy);
+        }
         sprite.setPosition(posx, posy);
     }
 }

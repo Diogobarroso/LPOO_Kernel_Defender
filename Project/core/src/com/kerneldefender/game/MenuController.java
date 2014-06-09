@@ -89,9 +89,7 @@ public class MenuController extends InputAdapter {
         if(button == Input.Buttons.LEFT)
             if(CheckMouseClick(cursor, play)) {
                 state = 1;
-                System.out.println("PLAY");
             }
-        System.out.println("Click");
         return true;
     }
 
