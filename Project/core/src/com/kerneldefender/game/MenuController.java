@@ -3,6 +3,7 @@ package com.kerneldefender.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
@@ -27,10 +28,11 @@ public class MenuController extends InputAdapter {
     private Texture exit_text;
     public Sprite exit;
 
+    private Music music;
+
     public Cursor cursor;
 
     public MenuController() {
-        Init();
     }
 
     public void Init() {
@@ -66,6 +68,11 @@ public class MenuController extends InputAdapter {
 
         //load cursor
         cursor = new Cursor();
+
+        //load music
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/tempmenu.ogg"));
+        music.setLooping(true);
+        music.play();
     }
 
     public void Update(KernelDefender kd) {
@@ -79,6 +86,7 @@ public class MenuController extends InputAdapter {
                 case 1:
                     kd.currentMode = KernelDefender.Mode.PLAY;
                     kd.worldController.Init();
+                    music.stop();
                     break;
             }
     }

@@ -48,7 +48,7 @@ public class Enemy {
         healthBar = new HealthBar(posx - sprite.getWidth() / 2, posy + sprite.getHeight() * sprite.getScaleY(), sprite.getWidth() * sprite.getScaleX(), 5.0f);
 
         //set damage
-        damage = 1.0f;
+        damage = 10.0f;
     }
 
     public void Move() {

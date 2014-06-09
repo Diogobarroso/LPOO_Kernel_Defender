@@ -46,7 +46,7 @@ public class WorldController extends InputAdapter{
         bg = new Sprite(bg_text);
         cursor = new Cursor();
 
-        music = Gdx.audio.newMusic(Gdx.files.internal("music/testmusic.ogg"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/tempbattle.ogg"));
         music.setLooping(true);
         music.play();
 
