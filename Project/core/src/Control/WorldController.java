@@ -172,11 +172,13 @@ public class WorldController extends InputAdapter{
         }
 
         //complex enemy spawning
+        /*
         complexEnemySpawnTimer += Gdx.graphics.getDeltaTime();
         if(complexEnemySpawnTimer >= 1 / complexEnemySpawnFreq) {
             complexEnemies.add(new ComplexEnemy());
             complexEnemySpawnTimer -= 1 / complexEnemySpawnFreq;
         }
+        */
     }
 
     public void EnemySuccess() {
