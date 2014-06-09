@@ -24,6 +24,10 @@ public class Kernel {
         shapeRenderer.end();
     }
 
+    public float GetHealth() {
+        return health;
+    }
+
     public void TakeDamage(float dmg) {
         health -= dmg;
     }

@@ -13,6 +13,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.kerneldefender.game.KernelDefender;
 
 public class WorldController extends InputAdapter{
     public Kernel kernel;
@@ -29,6 +30,7 @@ public class WorldController extends InputAdapter{
     private Music music;
     private Sound enemyExplosion;
     public Cursor cursor;
+    private int state = 0;
 
     public WorldController() {
     }
@@ -55,7 +57,7 @@ public class WorldController extends InputAdapter{
         enemyExplosion = Gdx.audio.newSound(Gdx.files.internal("sfx/Explosion4.wav"));
     }
 
-    public void Update() {
+    public void Update(KernelDefender kd) {
         //player updates
         player.Update();
         PlayerMissileBarrage();
@@ -73,6 +75,9 @@ public class WorldController extends InputAdapter{
 
         //cursor updates
         cursor.Update();
+
+        //game over conditions
+        KernelDeath(kd);
     }
 
     //continuous input handler
@@ -260,6 +265,14 @@ public class WorldController extends InputAdapter{
 
             if(banana.posx < 0 || banana.posx > 1280 || banana.posy < -50 || banana.posy > 720)
                 iter.remove();
+        }
+    }
+
+    public void KernelDeath(KernelDefender kd) {
+        if(kernel.GetHealth() <= 0) {
+            kd.currentMode = KernelDefender.Mode.MENU;
+            kd.worldController.Init();
+            music.stop();
         }
     }
 }

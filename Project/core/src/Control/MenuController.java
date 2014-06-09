@@ -87,6 +87,7 @@ public class MenuController extends InputAdapter {
         if(state != 0)
             switch(state) {
                 case 1:
+                    state = 0;
                     kd.currentMode = KernelDefender.Mode.PLAY;
                     kd.worldController.Init();
                     music.stop();

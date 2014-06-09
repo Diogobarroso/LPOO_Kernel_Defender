@@ -22,8 +22,8 @@ public class MenuRenderer {
             menuController.bg.draw(batch);
             menuController.ship.draw(batch);
             menuController.play.draw(batch);
-            menuController.options.draw(batch);
-            menuController.credits.draw(batch);
+            //menuController.options.draw(batch);
+            //menuController.credits.draw(batch);
             menuController.exit.draw(batch);
             menuController.cursor.sprite.draw(batch);
         batch.end();

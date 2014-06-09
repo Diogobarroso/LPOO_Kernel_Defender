@@ -50,7 +50,7 @@ public class KernelDefender extends ApplicationAdapter {
                 //handle input
                 worldController.HandleInput();
                 //general updates
-                worldController.Update();
+                worldController.Update(this);
                 //drawing
                 //clear screen
                 Gdx.gl.glClearColor(0.4f, 0.4f, 0.4f, 1);
