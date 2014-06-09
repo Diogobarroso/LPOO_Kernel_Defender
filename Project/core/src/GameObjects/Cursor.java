@@ -11,7 +11,7 @@ public class Cursor {
     public Sprite sprite;
 
     public Cursor() {
-        texture = new Texture("icons/windowicon.png");
+        texture = new Texture("sprites/cursor.png");
         sprite = new Sprite(texture);
     }
 
