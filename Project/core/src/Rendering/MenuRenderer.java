@@ -1,5 +1,6 @@
-package com.kerneldefender.game;
+package Rendering;
 
+import Control.MenuController;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MenuRenderer {

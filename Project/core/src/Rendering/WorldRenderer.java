@@ -1,5 +1,7 @@
-package com.kerneldefender.game;
+package Rendering;
 
+import Control.WorldController;
+import GameObjects.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

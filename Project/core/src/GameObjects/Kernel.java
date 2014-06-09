@@ -1,4 +1,4 @@
-package com.kerneldefender.game;
+package GameObjects;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 

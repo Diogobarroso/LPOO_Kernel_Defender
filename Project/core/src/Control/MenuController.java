@@ -1,4 +1,6 @@
-package com.kerneldefender.game;
+package Control;
+
+import com.kerneldefender.game.KernelDefender;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -6,6 +8,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import GameObjects.Cursor;
 
 public class MenuController extends InputAdapter {
     //for state transition

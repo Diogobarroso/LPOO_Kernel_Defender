@@ -1,12 +1,16 @@
 package com.kerneldefender.game;
 
+import Control.MenuController;
+import Control.WorldController;
+import Rendering.MenuRenderer;
+import Rendering.WorldRenderer;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 
 public class KernelDefender extends ApplicationAdapter {
     public enum Mode {MENU, PLAY};
-    static Mode currentMode;
+    public static Mode currentMode;
     public MenuController menuController;
     public MenuRenderer menuRenderer;
     public WorldController worldController;

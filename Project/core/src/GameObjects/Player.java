@@ -1,4 +1,4 @@
-package com.kerneldefender.game;
+package GameObjects;
 
 import java.lang.Math;
 import java.util.Iterator;
